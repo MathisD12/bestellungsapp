@@ -1,0 +1,40 @@
+### Tests
+
+POST {{.instance}}/orders
+
+[Body]
+{
+    "Name": "Goat",
+    "Product": {
+        "Name": "Nudeln"
+    }
+}
+
+[Script]
+assert_eq(response.StatusCode, 201);
+
+---
+
+GET {{.instance}}/orders
+
+[Script]
+info(response);
+assert_eq(response.StatusCode, 200);
+assert_eq(response.Body.length, 1);
+
+---
+
+DELETE {{.instance}}/orders/0
+
+[Script]
+info(response);
+assert_eq(response.StatusCode, 400);
+
+---
+
+### Teardown
+
+DELETE {{.instance}}/orders/1
+
+[Script]
+assert_eq(response.StatusCode, 200);

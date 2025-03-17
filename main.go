@@ -26,11 +26,8 @@ type product struct {
 	Veggy bool
 }
 
-var orders = []*order{
-	//	{Name: "Diter", Product: "Nudeln 1"},
-	//	{Name: "Diter", Product: "Nudeln 2"},
-	//	{Name: "Diter", Product: "Nudeln 3"},
-}
+var orders = []*order{}
+
 var mutex sync.Mutex
 
 func main() {
@@ -55,6 +52,7 @@ func main() {
 }
 
 func getOrders(resp http.ResponseWriter, req *http.Request) {
+	resp.Header().Set("Content-Type", "application/json")
 	enc := json.NewEncoder(resp)
 	enc.Encode(orders)
 
@@ -94,7 +92,10 @@ func addOrder(resp http.ResponseWriter, req *http.Request) {
 		resp.Write([]byte(err.Error()))
 		return
 	}
+
+	resp.WriteHeader(http.StatusCreated)
 }
+
 func deleteorders(resp http.ResponseWriter, req *http.Request) {
 	idxsrting := req.PathValue("idx")
 	idx, err := strconv.Atoi(idxsrting)
@@ -159,6 +160,8 @@ func summaryOrders(resp http.ResponseWriter, req *http.Request) {
 		Products: countsProducts,
 		Drinks:   countsDrinks,
 	}
+
+	resp.Header().Set("Content-Type", "application/json")
 	enc := json.NewEncoder(resp)
 	enc.Encode(counts)
 
