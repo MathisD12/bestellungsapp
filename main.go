@@ -1,8 +1,10 @@
 package main
 
 import (
+	"embed"
 	"encoding/json"
 	"fmt"
+	"io/fs"
 	"net/http"
 	"os"
 	"slices"
@@ -10,6 +12,9 @@ import (
 	"strings"
 	"sync"
 )
+
+//go:embed web
+var webFS embed.FS
 
 type order struct {
 	Name    string
@@ -38,7 +43,12 @@ func main() {
 	}
 
 	mux := http.NewServeMux()
-	fileHandler := http.FileServer(http.FS(os.DirFS("web")))
+	subFS, err := fs.Sub(webFS, "web")
+	if err != nil {
+		fmt.Println("Der Webpfad existiert nicht!", err)
+		return
+	}
+	fileHandler := http.FileServer(http.FS(subFS))
 
 	mux.Handle("GET /", fileHandler)
 	mux.HandleFunc("GET /orders", getOrders)
