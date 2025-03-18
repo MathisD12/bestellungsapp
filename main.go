@@ -43,7 +43,7 @@ func main() {
 	}
 
 	mux := http.NewServeMux()
-	subFS, err := fs.Sub(webFS, "web")
+	subFS, err := getWebFs()
 	if err != nil {
 		fmt.Println("Der Webpfad existiert nicht!", err)
 		return
@@ -59,6 +59,18 @@ func main() {
 	fmt.Println("Starte Server auf http://127.0.0.1:8080 ...")
 	http.ListenAndServe("127.0.0.1:8080", mux)
 
+}
+
+func getWebFs() (fs.FS, error) {
+	stat, err := os.Stat("web")
+	if err == nil && stat.IsDir() {
+		fmt.Println("Using local web files")
+		return os.DirFS("web"), nil
+	} else {
+		fmt.Println("Using embedded web files")
+		subFS, err := fs.Sub(webFS, "web")
+		return subFS, err
+	}
 }
 
 func getOrders(resp http.ResponseWriter, req *http.Request) {
