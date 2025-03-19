@@ -37,5 +37,9 @@ button.onclick = async () => {
     
     if (!response.ok) {
         fehler.innerText = await response.text();
+        fehler.style.display = "block";
+    } else {
+        window.location.replace("/sent.html");
     }
 }
+

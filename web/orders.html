@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <title>Bestellungen | Hermans Bestellungen</title>
+        <link rel="stylesheet" href="./styles.css">
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+    </head>
+    <body>
+        <div class="container">
+            <h1>Bestellungen</h1>
+            
+            <div>
+                <h2>Alle Bestellungen</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Produkt</td>
+                            <td>Veggy?</td>
+                            <td>Drink</td>
+                            <td>Größe</td>
+                        </tr>
+                    </thead>
+                    <tbody id="orders"></tbody>
+                </table>
+            </div>
+
+            <div>
+                <h2>Zusammenfassung</h2>
+                <h3>Essen</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Produkt</td>
+                            <td>Anzahl</td>
+                        </tr>
+                    </thead>
+                    <tbody id="summary-food">
+                    </tbody>
+                </table>
+                <h3>Trinken</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Produkt</td>
+                            <td>Anzahl</td>
+                        </tr>
+                    </thead>
+                    <tbody id="summary-drinks">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <script src="./orders.js"></script>
+    </body>
+</html>

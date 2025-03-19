@@ -1,29 +1,37 @@
 <html>
     <head>
-        <title>Hermans Bestellungen</title>
+        <title>Bestellen | Hermans Bestellungen</title>
+        <link rel="stylesheet" href="./styles.css">
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
     </head>
     <body>
-        <h1>Hermans Bestellungen</h1>
-        <div>
-            <div>
-                <label for="input-name">Name:</label>
-                <input id="input-name" type="text">
-            </div>
-            <div>
-                <label for="input-essen">Essen:</label>
-                <input id="input-essen" type="text">
-                <input id="checkbox-veggy" type="checkbox"><label for="checkbox-veggy">Vegetarisch?</label>
-            </div>
-            <div>
-                <label for="input-trinken">Trinken:</label>
-                <input id="input-trinken" type="text">
-                <select id="select-size">
-                    <option selected value="1">klein</option>
-                    <option value="2">groß</option>
-                </select>
+        <div class="container">
+            <h1>Hermans Bestellungen</h1>
+            <div class="grid-parent">
+                <div class="grid-row">
+                    <label for="input-name">Name*:</label>
+                    <input id="input-name" type="text">
+                </div>
+                <div class="grid-row">
+                    <label for="input-essen">Essen*:</label>
+                    <input id="input-essen" type="text">
+                    <span>
+                        <input id="checkbox-veggy" type="checkbox"><label for="checkbox-veggy">Vegetarisch?</label>
+                    </span>
+                </div>
+                <div class="grid-row">
+                    <label for="input-trinken">Trinken:</label>
+                    <input id="input-trinken" type="text">
+                    <select id="select-size">
+                        <option selected value="1">klein</option>
+                        <option value="2">groß</option>
+                    </select>
+                </div>
             </div>
             <div id="fehler"></div>
-            <button id="button-absenden">Absenden!</button>
+            <div class="button-row">
+                <button id="button-absenden">Absenden!</button>
+            </div>
         </div>
         <script src="./index.js"></script>
     </body>
