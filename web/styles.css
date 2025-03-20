@@ -126,3 +126,7 @@ table {
 
     background-color: rgb(238, 230, 207);
 }
+
+button.remove {
+    width: fit-content;
+}

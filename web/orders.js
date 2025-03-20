@@ -2,6 +2,16 @@ const table = document.getElementById("orders");
 const tableSummaryFood = document.getElementById("summary-food");
 const tableSummaryDrinks = document.getElementById("summary-drinks");
 
+
+
+async function deleteOrder(idx) {
+    console.log("delete element", idx);
+    const response = await fetch(`/orders/${idx}`, {
+        method: "DELETE"
+    });
+    return true;
+}
+
 async function loadOrders() {
     const response = await fetch("/orders", {
         method: "GET"
@@ -11,12 +21,21 @@ async function loadOrders() {
 
     console.log("orders:", orders);
 
-    for (const order of orders) {
+    for (let i = 0; i < orders.length; i++) {
+        const order = orders[i];
+        
         const name = document.createElement("td");
         const product = document.createElement("td");
         const veggy = document.createElement("td");
         const drink = document.createElement("td");
         const size = document.createElement("td");
+
+        const removeBtn = document.createElement("button");
+        removeBtn.innerText = "❌";
+        removeBtn.className = "remove";
+        
+        const remove = document.createElement("td");
+        remove.appendChild(removeBtn);
 
         name.innerText = order.Name;
         product.innerText = order.Product.Name;
@@ -33,8 +52,15 @@ async function loadOrders() {
         row.appendChild(veggy);
         row.appendChild(drink);
         row.appendChild(size);
+        row.appendChild(remove);
 
         table.appendChild(row);
+
+        removeBtn.onclick = async () => {
+            if (await deleteOrder(i + 1)) {
+                table.removeChild(row);       
+            };
+        }
     }
 }
 
