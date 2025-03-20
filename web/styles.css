@@ -1,32 +1,36 @@
 /* #ff8400 */
 
+:root {
+    --clr-text: rgb(241, 241, 241);
+}
+
 * {
     box-sizing: border-box;
 }
 
 body {
-    background-color: black;
+    background-color: rgb(27, 27, 27);
 }
 
 .container {
-    background-color: white;
+    background-color: rgb(240, 223, 178);
     width: 100%;
     max-width: 40rem;
     margin: auto;
     padding: 5px 50px 15px;
-
+    border-radius: 5px;
 }
 
 .container h1 {
-    color: white;
+    color: var(--clr-text);
     font-family: sans-serif;
     text-align: center;
 
     border: 2px;
 
-    background-color: #ff8400;
-    border: 2px solid black;
-    box-shadow: black -2px 2px;
+    background-color: #fd9a31;
+    border: 2px solid rgb(24, 24, 24);
+    box-shadow: rgb(31, 31, 31) -2px 2px;
 
     padding: 5px 10px;
 }
@@ -48,13 +52,19 @@ body {
     width: 150px;
     height: 25px;
 
-    color: white;
+    color: var(--clr-text);
     font-weight: bold;
 
-    background-color: #ff8400;
-    border: 2px solid black;
-    box-shadow: black 2px -2px;
+    background-color: #ff8800;
+    border: 2px solid rgb(34, 34, 34);
+    box-shadow: rgb(58, 58, 58) 3px -2px;
 
+    cursor: pointer;
+
+    &:active {
+        box-shadow: rgb(58, 58, 58) 0px 0px;
+        transform: translate(3px, -2px);
+    }
 }
 
 .grid-parent {
@@ -89,8 +99,8 @@ body {
 
 #fehler {
     display: none;
-    background-color: #ff4242;
-    color: white;
+    background-color: #ff2c2c;
+    color: var(--clr-text);
     width: fit-content;
     margin: auto;
     margin-top: 0.5em;
@@ -107,5 +117,12 @@ table {
 
     thead {
         font-weight: bold;
+        background-color: rgb(231, 208, 145);
     }
+
+    tbody > tr:nth-child(odd) {
+        background-color: rgb(223, 216, 197);
+    }
+
+    background-color: rgb(238, 230, 207);
 }
